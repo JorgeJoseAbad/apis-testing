@@ -10,10 +10,14 @@ router.get('/', function(req, res, next) {
 
 //primera ruta a api
 router.get('/myPost',function (req,res,next) {
-  console.log("estoy en fetch my post")
-  fetch('https://my-json-server.typicode.com/jorgejoseabad/fake-apis/post',{method:'GET'})
+  console.log("estoy en fetch my post");
+  //ok si está funcionando
+  fetch('https://my-json-server.typicode.com/jorgejoseabad/fake-apis/posts')
   .then(res => res.json())
-  .then(json => console.log(json))
+  .then(json => {
+    console.log(json);
+    res.send(json);
+  })
   .catch(err=>console.log("Recojo error",err))
 })
 
