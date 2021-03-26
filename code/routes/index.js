@@ -14,12 +14,12 @@ router.get('/', function(req, res, next) {
 router.get('/posts',function (req,res,next) {
   fetch(`${mainUrl}` +'/posts')
   .then(res => res.json())
-  .then(json => {
-    myParser.myParser(json);
+  .then(data => {
+    myParser.myParser(data);
     //res.send(json);
     res.render('post',{
       title: 'My post',
-      data: json
+      data: data
     })
   })
   .catch(err=>console.log("Error: ",err))
@@ -28,12 +28,12 @@ router.get('/posts',function (req,res,next) {
 router.get('/comments',function (req,res,next) {
    fetch(`${mainUrl}` +'/comments')
    .then(res => res.json())
-   .then(json => {
-     myParser.myParser(json);
+   .then(data => {
+     myParser.myParser(data);
      //res.send(json)
      res.render('comments',{
        title: 'My comments send',
-       data: json
+       data: data
      })
    })
    .catch(err => console.log("Error: ",err))
@@ -42,12 +42,12 @@ router.get('/comments',function (req,res,next) {
 router.get('/products',function (req,res,next) {
    fetch(`${mainUrl}` +'/products')
    .then(res => res.json())
-   .then(json => {
-     myParser.myParser(json);
+   .then(data => {
+     myParser.myParser(data);
      //res.send(json)
      res.render('products',{
        title: 'My products',
-       data: json
+       data: data
      })
    })
    .catch(err => console.log("Error: ",err))
@@ -56,11 +56,11 @@ router.get('/products',function (req,res,next) {
 router.get('/profile',function (req,res,next) {
    fetch(`${mainUrl}` +'/profile')
    .then(res => res.json())
-   .then(json => {
-     myParser.myParser(json);
+   .then(data => {
+     myParser.myParser(data);
      //res.send(json)
      res.render('index',{
-       title: json.name
+       title: data.name
      })
    })
    .catch(err => console.log("Error: ",err))
@@ -69,9 +69,9 @@ router.get('/profile',function (req,res,next) {
 router.get('/db',function (req,res,next) {
    fetch(`${mainUrl}` +'/db')
    .then(res => res.json())
-   .then(json => {
+   .then(data => {
 
-     res.send(json)
+     res.send(data)
    })
    .catch(err => console.log("Error: ",err))
 })
