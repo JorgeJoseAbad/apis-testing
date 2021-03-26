@@ -11,10 +11,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Main search page' });
 });
 
+//resFetch (res of fetch) is not the same res (response) of Express
 router.get('/posts',function (req,res,next) {
   fetch(`${mainUrl}` +'/posts')
-  .then(res => res.json())
+  .then(resFetch => resFetch.json())
   .then(data => {
+    debugger;
     myParser.myParser(data);
     //res.send(json);
     res.render('post',{
@@ -27,7 +29,7 @@ router.get('/posts',function (req,res,next) {
 
 router.get('/comments',function (req,res,next) {
    fetch(`${mainUrl}` +'/comments')
-   .then(res => res.json())
+   .then(resFetch => resFetch.json())
    .then(data => {
      myParser.myParser(data);
      //res.send(json)
@@ -41,7 +43,7 @@ router.get('/comments',function (req,res,next) {
 
 router.get('/products',function (req,res,next) {
    fetch(`${mainUrl}` +'/products')
-   .then(res => res.json())
+   .then(resFetch => resFetch.json())
    .then(data => {
      myParser.myParser(data);
      //res.send(json)
@@ -55,7 +57,7 @@ router.get('/products',function (req,res,next) {
 
 router.get('/profile',function (req,res,next) {
    fetch(`${mainUrl}` +'/profile')
-   .then(res => res.json())
+   .then(resFetch => resFetch.json())
    .then(data => {
      myParser.myParser(data);
      //res.send(json)
@@ -68,7 +70,7 @@ router.get('/profile',function (req,res,next) {
 
 router.get('/db',function (req,res,next) {
    fetch(`${mainUrl}` +'/db')
-   .then(res => res.json())
+   .then(resFetch => resFetch.json())
    .then(data => {
 
      res.send(data)
