@@ -11,6 +11,37 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Main search page' });
 });
 
+router.get('/new',function (req,res,next) {
+  res.render('new',{title:'New Comment, fetching with POST verb'})
+})
+
+router.post('/new',function (req,res,next) {
+  const data = {
+    id : req.body.id,
+    body : req.body.body,
+    postId : req.body.postId
+  };
+
+  fetch(`${mainUrl}`+"/comments", {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    res.send(data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    res.send("<h1>ERROR</h1>")
+  });
+})
+
+
+
 //resFetch (res of fetch) is not the same res (response) of Express
 router.get('/posts',function (req,res,next) {
   fetch(`${mainUrl}` +'/posts')
