@@ -11,40 +11,35 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Main search page' });
 });
 
-//primera ruta a api
 router.get('/posts',function (req,res,next) {
-  console.log("estoy en fetch posts");
-  //ok si está funcionando
   fetch(`${mainUrl}` +'/posts')
   .then(res => res.json())
   .then(json => {
     myParser.myParser(json);
     //res.send(json);
     res.render('post',{
-      title: 'Mis post enviados',
+      title: 'My post',
       data: json
     })
   })
-  .catch(err=>console.log("Recojo error",err))
+  .catch(err=>console.log("Error: ",err))
 })
 
 router.get('/comments',function (req,res,next) {
-   console.log("estoy en fetch comments ");
    fetch(`${mainUrl}` +'/comments')
    .then(res => res.json())
    .then(json => {
      myParser.myParser(json);
      //res.send(json)
      res.render('comments',{
-       title: 'Mis comments send',
+       title: 'My comments send',
        data: json
      })
    })
-   .catch(err => console.log("Recojo error",err))
+   .catch(err => console.log("Error: ",err))
 })
 
 router.get('/products',function (req,res,next) {
-   console.log("estoy en fetch comments ");
    fetch(`${mainUrl}` +'/products')
    .then(res => res.json())
    .then(json => {
@@ -55,11 +50,10 @@ router.get('/products',function (req,res,next) {
        data: json
      })
    })
-   .catch(err => console.log("Recojo error",err))
+   .catch(err => console.log("Error: ",err))
 })
 
 router.get('/profile',function (req,res,next) {
-   console.log("estoy en fetch comments ");
    fetch(`${mainUrl}` +'/profile')
    .then(res => res.json())
    .then(json => {
@@ -69,18 +63,17 @@ router.get('/profile',function (req,res,next) {
        title: json.name
      })
    })
-   .catch(err => console.log("Recojo error",err))
+   .catch(err => console.log("Error: ",err))
 })
 
 router.get('/db',function (req,res,next) {
-   console.log("estoy en fetch comments ");
    fetch(`${mainUrl}` +'/db')
    .then(res => res.json())
    .then(json => {
 
      res.send(json)
    })
-   .catch(err => console.log("Recojo error",err))
+   .catch(err => console.log("Error: ",err))
 })
 
 module.exports = router;

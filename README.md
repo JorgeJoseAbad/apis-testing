@@ -39,4 +39,8 @@ Please take in mind the line
 ```
 "start": "nodemon --inspect ./bin/www"
 ```
-In package,json, You can change it...
+In package,json, you need nodemon and chrome inspector You can change it...
+
+```
+"start": "node ./bin/www"
+```
