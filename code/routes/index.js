@@ -8,7 +8,7 @@ const mainUrl = "https://my-json-server.typicode.com/jorgejoseabad/fake-apis";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Main search page' });
 });
 
 //primera ruta a api
@@ -34,7 +34,11 @@ router.get('/comments',function (req,res,next) {
    .then(res => res.json())
    .then(json => {
      myParser.myParser(json);
-     res.send(json)
+     //res.send(json)
+     res.render('comments',{
+       title: 'Mis comments send',
+       data: json
+     })
    })
    .catch(err => console.log("Recojo error",err))
 })
@@ -45,7 +49,11 @@ router.get('/products',function (req,res,next) {
    .then(res => res.json())
    .then(json => {
      myParser.myParser(json);
-     res.send(json)
+     //res.send(json)
+     res.render('products',{
+       title: 'My products',
+       data: json
+     })
    })
    .catch(err => console.log("Recojo error",err))
 })
@@ -56,7 +64,10 @@ router.get('/profile',function (req,res,next) {
    .then(res => res.json())
    .then(json => {
      myParser.myParser(json);
-     res.send(json)
+     //res.send(json)
+     res.render('index',{
+       title: json.name
+     })
    })
    .catch(err => console.log("Recojo error",err))
 })
