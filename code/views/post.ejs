@@ -6,6 +6,11 @@
   </head>
   <body>
     <%=title%>
-    <%=json%>
+    <ul>
+      <% data.forEach((item, i) => {%>
+        <li><%=item.title%> - <%=item.author%></li>
+
+      <%}); %>
+    </ul>
   </body>
 </html>

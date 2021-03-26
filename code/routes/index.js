@@ -22,7 +22,7 @@ router.get('/posts',function (req,res,next) {
     //res.send(json);
     res.render('post',{
       title: 'Mis post enviados',
-      json
+      data: json
     })
   })
   .catch(err=>console.log("Recojo error",err))
