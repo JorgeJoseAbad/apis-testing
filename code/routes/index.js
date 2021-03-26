@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const fetch = require("node-fetch");
 const fileType = require('file-type');
+const myParser = require('../public/javascript/js');
 
 const mainUrl = "https://my-json-server.typicode.com/jorgejoseabad/fake-apis";
 
@@ -17,8 +18,12 @@ router.get('/posts',function (req,res,next) {
   fetch(`${mainUrl}` +'/posts')
   .then(res => res.json())
   .then(json => {
-    console.log(json);
-    res.send(json);
+    myParser.myParser(json);
+    //res.send(json);
+    res.render('post',{
+      title: 'Mis post enviados',
+      json
+    })
   })
   .catch(err=>console.log("Recojo error",err))
 })
@@ -28,7 +33,7 @@ router.get('/comments',function (req,res,next) {
    fetch(`${mainUrl}` +'/comments')
    .then(res => res.json())
    .then(json => {
-     console.log(json);
+     myParser.myParser(json);
      res.send(json)
    })
    .catch(err => console.log("Recojo error",err))
@@ -39,7 +44,7 @@ router.get('/products',function (req,res,next) {
    fetch(`${mainUrl}` +'/products')
    .then(res => res.json())
    .then(json => {
-     console.log(json);
+     myParser.myParser(json);
      res.send(json)
    })
    .catch(err => console.log("Recojo error",err))
@@ -50,7 +55,7 @@ router.get('/profile',function (req,res,next) {
    fetch(`${mainUrl}` +'/profile')
    .then(res => res.json())
    .then(json => {
-     console.log(json);
+     myParser.myParser(json);
      res.send(json)
    })
    .catch(err => console.log("Recojo error",err))
@@ -61,7 +66,7 @@ router.get('/db',function (req,res,next) {
    fetch(`${mainUrl}` +'/db')
    .then(res => res.json())
    .then(json => {
-     console.log(json);
+
      res.send(json)
    })
    .catch(err => console.log("Recojo error",err))
