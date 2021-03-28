@@ -22,7 +22,7 @@ router.post('/new',function (req,res,next) {
     postId : req.body.postId
   };
 
-  fetch(`${mainUrl}`+"/comments", {
+  fetch(`${mainUrl}/comments`, {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ router.post('/new',function (req,res,next) {
 
 //resFetch (res of fetch) is not the same res (response) of Express
 router.get('/posts',function (req,res,next) {
-  fetch(`${mainUrl}` +'/posts')
+  fetch(`${mainUrl}/posts`)
   .then(resFetch => resFetch.json())
   .then(data => {
     debugger;
@@ -59,7 +59,7 @@ router.get('/posts',function (req,res,next) {
 })
 
 router.get('/comments',function (req,res,next) {
-   fetch(`${mainUrl}` +'/comments')
+   fetch(`${mainUrl}/comments`)
    .then(resFetch => resFetch.json())
    .then(data => {
      myParser.myParser(data);
@@ -73,7 +73,7 @@ router.get('/comments',function (req,res,next) {
 })
 
 router.get('/products',function (req,res,next) {
-   fetch(`${mainUrl}` +'/products')
+   fetch(`${mainUrl}/products`)
    .then(resFetch => resFetch.json())
    .then(data => {
      myParser.myParser(data);
@@ -87,7 +87,7 @@ router.get('/products',function (req,res,next) {
 })
 
 router.get('/profile',function (req,res,next) {
-   fetch(`${mainUrl}` +'/profile')
+   fetch(`${mainUrl}/profile`)
    .then(resFetch => resFetch.json())
    .then(data => {
      myParser.myParser(data);
@@ -100,7 +100,7 @@ router.get('/profile',function (req,res,next) {
 })
 
 router.get('/db',function (req,res,next) {
-   fetch(`${mainUrl}` +'/db')
+   fetch(`${mainUrl}/db`)
    .then(resFetch => resFetch.json())
    .then(data => {
 
